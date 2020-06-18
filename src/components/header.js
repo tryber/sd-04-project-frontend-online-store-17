@@ -17,7 +17,8 @@ class SearchInput extends React.Component {
           <img src={carrinho} alt="imagem carrinho" />
         </div>
       </div>
-    ) };
+    );
+  }
 }
 
 
