@@ -13,15 +13,15 @@ export default class SideBar extends React.Component {
 
   componentDidMount() {
     api.getCategories().then((data) => this.setState({ categories: data, loaded: true }));
+    api
+      .getProductsFromCategoryAndQuery('MLB5672')
+      .then((data) => this.setState({ products: data }));
   }
 
-  onClickBtn(event) {
-    console.log(event);
-  }
+  onClickBtn(event) {}
 
   render() {
     const { categories } = this.state;
-    console.log(categories);
     if (this.state.loaded === false) return <div>Oi</div>;
     return (
       <div data-testid="side-bar">
