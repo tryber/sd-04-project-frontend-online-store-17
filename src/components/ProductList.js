@@ -11,6 +11,7 @@ export default class ProductList extends React.Component {
 
   componentDidMount() {
     api.getCategories().then((data) => this.setState({ categories: data }));
+    console.log();
   }
 
   render() {
