@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from '../services/api';
+import SideBar from '../pages/SideBar';
 
 export default class ProductList extends React.Component {
   constructor(props) {
@@ -9,20 +10,13 @@ export default class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    this.categories();
-  }
-
-  async categories() {
-    console.log('Montou!');
-    console.log(await api.getCategories());
-    this.setState({ categories: await api.getCategories() });
-    console.log(this.state.categories);
+    api.getCategories().then((data) => this.setState({ categories: data }));
   }
 
   render() {
     return (
       <div>
-        <h1>OI </h1>
+        <SideBar />
       </div>
     );
   }
