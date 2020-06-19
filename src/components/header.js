@@ -1,5 +1,4 @@
 import React from 'react';
-import carrinho from '../image/carrinho.png';
 
 class SearchInput extends React.Component {
   render() {
@@ -12,9 +11,7 @@ class SearchInput extends React.Component {
             name="labelInput"
             id="labelInput"
           />
-        </div>
-        <div>
-          <img src={carrinho} alt="imagem carrinho" />
+          <button type="submit">Pesquisar</button>
         </div>
       </div>
     );
