@@ -2,6 +2,7 @@ import React from 'react';
 
 class SearchInput extends React.Component {
   render() {
+    const { getInput, inputText } = this.props;
     return (
       <div>
         <div>
@@ -10,6 +11,8 @@ class SearchInput extends React.Component {
             type="text"
             name="labelInput"
             id="labelInput"
+            onChange={getInput}
+            value={inputText}
           />
           <button type="submit">Pesquisar</button>
         </div>
@@ -17,6 +20,5 @@ class SearchInput extends React.Component {
     );
   }
 }
-
 
 export default SearchInput;
