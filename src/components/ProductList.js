@@ -41,8 +41,8 @@ export default class ProductList extends React.Component {
           <div className="sidebar-categories">
             <SearchInput getInput={this.getInput} inputText={inputText} />
             <SideBar />
-          </div>
-          <Loading data-testid="home-initial-message" />
+          </div>          
+          <span data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</span>
         </div>
       );
     }
