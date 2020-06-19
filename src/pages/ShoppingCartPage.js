@@ -13,7 +13,7 @@ class ShoppingCartPage extends React.Component {
         <h3>lalalalalag</h3>
       </div>
     );
-  };
+  }
 }
 
 export default ShoppingCartPage;
