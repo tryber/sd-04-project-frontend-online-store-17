@@ -7,14 +7,16 @@ class SearchInput extends React.Component {
     return (
       <div>
         <div>
-          <label htmlFor="labelInput">Pesquisa</label>
-          <input
-            type="text"
-            name="labelInput"
-            id="labelInput"
-            onChange={getInput}
-            value={inputText}
-          />
+          <label htmlFor="labelInput">
+            Pesquisa
+            <input
+              type="text"
+              name="labelInput"
+              id="labelInput"
+              onChange={getInput}
+              value={inputText}
+            />
+          </label>
         </div>
         <div>
           <img src={carrinho} alt="imagem carrinho" />
