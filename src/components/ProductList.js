@@ -42,7 +42,7 @@ export default class ProductList extends React.Component {
             <SearchInput getInput={this.getInput} inputText={inputText} />
             <SideBar />
           </div>
-          <Loading />
+          <Loading data-testid="home-initial-message" />
         </div>
       );
     }
