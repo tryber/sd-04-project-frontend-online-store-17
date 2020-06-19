@@ -12,7 +12,8 @@ function App() {
         <BrowserRouter>
           <ShoppingCartButton />
           <Switch>
-            <Route path="/" component={ProductList} />
+            <Route exact path="/" component={ProductList} />
+            {/* <Route exact path='/product/:id/detail' component={} */}
             <Route exact path="/ShoppingCartPage" component={ShoppingCartPage} />
           </Switch>
         </BrowserRouter>
