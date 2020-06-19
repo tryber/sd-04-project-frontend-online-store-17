@@ -9,7 +9,7 @@ class ShoppingCartPage extends React.Component {
 
   render() {
     return (
-      <div data-testid="shopping-cart-empty-message">
+      <div>
         <span data-testid="shopping-cart-empty-message">{this.state}</span>
       </div>
     );
