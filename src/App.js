@@ -12,8 +12,8 @@ function App() {
         <BrowserRouter>
           <ShoppingCartButton />
           <Switch>
-            <Route path="/" component={ProductList} />
-            <Route exact path="/ShoppingCartPage" component={ShoppingCartPage} />
+            <Route exact path="/" component={ProductList} />
+            <Route exact path="/ShoppingCart" component={ShoppingCartPage} />
           </Switch>
         </BrowserRouter>
       </div>
