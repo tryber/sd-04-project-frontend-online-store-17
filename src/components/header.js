@@ -14,7 +14,7 @@ class SearchInput extends React.Component {
             onChange={getInput}
             value={inputText}
           />
-          <button type="submit">Pesquisar</button>
+          <button type="submit">Pesquisar</button>         
         </div>
       </div>
     );

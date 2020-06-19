@@ -3,6 +3,7 @@ import SideBar from '../pages/SideBar';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
 import SearchInput from './header';
+import Loading from '../pages/Loading';
 
 export default class ProductList extends React.Component {
   constructor(props) {
@@ -11,36 +12,41 @@ export default class ProductList extends React.Component {
     this.getInput = this.getInput.bind(this);
 
     this.state = {
-      products: '',
+      random: 0,
+      product: [],
       loading: false,
       inputText: '',
     };
   }
 
-  componentDidUpdate() {
-    const { inputText } = this.state;
-    api
-      .getProductsFromCategoryAndQuery(inputText)
-      .then((data) => this.setState({ products: data.results, loading: true }));
+  async getInput(event) {
+    this.setState({ inputText: event.target.value });
+    setTimeout(() => {
+      this.chamaApi();
+    }, 2000);
   }
 
-  getInput(event) {
-    this.setState({ inputText: event.target.value });
+  async chamaApi() {
+    const { inputText } = this.state;
+    await api
+      .getProductFromQuery(inputText)
+      .then((data) => this.setState({ product: data.results, loading: true }));
   }
 
   render() {
-    const { products, loading, inputText } = this.state;
-    if (loading === false || products === '') {
+    const { product, loading, inputText } = this.state;
+    if (loading === false || inputText.length < 4) {
       return (
-        <div className="sidebar-categories">
-          <SearchInput props={this.onSubmit} />
-          <SideBar />
-          <div>
-            <p>Nenhum produto encontrado!</p>
+        <div>
+          <div className="sidebar-categories">
+            <SearchInput getInput={this.getInput} inputText={inputText} />
+            <SideBar />
           </div>
+          <Loading />
         </div>
       );
     }
+
     return (
       <div>
         <div className="sidebar-categories">
@@ -48,7 +54,7 @@ export default class ProductList extends React.Component {
           <SideBar />
         </div>
         <div>Products</div>
-        {products.map((e) => (
+        {product.map((e) => (
           <ProductCard key={e.id} product={e} />
         ))}
       </div>
