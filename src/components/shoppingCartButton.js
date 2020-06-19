@@ -6,8 +6,8 @@ import './shoppingCartButton.css';
 class ShoppingCartButton extends React.Component {
   render() {
     return (
-      <div>
-        <Link to={'/ShoppingCartPage'}><img src={carrinho} alt='imagem do carrinho' className="imagemCarrinho" /></Link>
+      <div data-testid="shopping-cart-button">
+        <Link to={'/ShoppingCart'}><img src={carrinho} alt='imagem do carrinho' className="imagemCarrinho" /></Link>
       </div>
     );
   }

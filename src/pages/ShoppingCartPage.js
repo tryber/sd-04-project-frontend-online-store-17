@@ -9,8 +9,8 @@ class ShoppingCartPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>lalalalalag</h3>
+      <div data-testid="shopping-cart-empty-message">
+        <h3>Seu carrinho está vazio</h3>
       </div>
     );
   }
