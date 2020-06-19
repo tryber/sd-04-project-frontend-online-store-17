@@ -3,7 +3,6 @@ import SideBar from '../pages/SideBar';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
 import SearchInput from './header';
-import Loading from '../pages/Loading';
 
 export default class ProductList extends React.Component {
   constructor(props) {
@@ -41,8 +40,10 @@ export default class ProductList extends React.Component {
           <div className="sidebar-categories">
             <SearchInput getInput={this.getInput} inputText={inputText} />
             <SideBar />
-          </div>          
-          <span data-testid="home-initial-message">Digite algum termo de pesquisa ou escolha uma categoria.</span>
+          </div>
+          <span data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </span>
         </div>
       );
     }
