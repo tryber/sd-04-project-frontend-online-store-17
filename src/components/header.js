@@ -3,6 +3,7 @@ import carrinho from '../image/carrinho.png';
 
 class SearchInput extends React.Component {
   render() {
+    const { getInput, inputText } = this.props;
     return (
       <div>
         <div>
@@ -11,6 +12,8 @@ class SearchInput extends React.Component {
             type="text"
             name="labelInput"
             id="labelInput"
+            onChange={getInput}
+            value={inputText}
           />
         </div>
         <div>
@@ -20,6 +23,5 @@ class SearchInput extends React.Component {
     );
   }
 }
-
 
 export default SearchInput;
