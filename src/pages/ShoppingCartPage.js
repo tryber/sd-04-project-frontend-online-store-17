@@ -4,13 +4,13 @@ class ShoppingCartPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = "Carrinho vazio";
+    this.state = "Seu carrinho está vazio";
   }
 
   render() {
     return (
       <div>
-        <h3>lalalalalag</h3>
+        <span data-testid="shopping-cart-empty-message">{this.state}</span>
       </div>
     );
   }
