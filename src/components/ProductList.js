@@ -13,22 +13,16 @@ export default class ProductList extends React.Component {
     this.state = {
       products: '',
       loading: false,
-      inputText: '',
+      inputText: 'computador',
     };
   }
 
-  componentDidUpdate() {
-    const { inputText } = this.state;
-    api
-      .getProductsFromCategoryAndQuery(inputText)
-      .then((data) => this.setState({ products: data.results, loading: true }));
-  }
-
   getInput(event) {
-    this.setState({ inputText: event.target.value });
+    console.log(event.target.value);
   }
 
   render() {
+    console.log(this.state);
     const { products, loading, inputText } = this.state;
     if (loading === false || products === '') {
       return (
