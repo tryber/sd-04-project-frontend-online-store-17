@@ -12,7 +12,7 @@ export default class ProductList extends React.Component {
     this.getInput = this.getInput.bind(this);
 
     this.state = {
-      random: 0,
+      categorie: '',
       product: [],
       loading: false,
       inputText: '',
@@ -33,14 +33,19 @@ export default class ProductList extends React.Component {
       .then((data) => this.setState({ product: data.results, loading: true }));
   }
 
+  fromCategories(event) {
+    console.log(event.target.value);
+  }
+
   render() {
-    const { product, loading, inputText } = this.state;
+    const { fromCategories } = this.props;
+    const { product, loading, inputText, categorie } = this.state;
     if (loading === false || inputText.length < 4) {
       return (
         <div>
           <div className="sidebar-categories">
             <SearchInput getInput={this.getInput} inputText={inputText} />
-            <SideBar />
+            <SideBar categorie={categorie} fromCategories={this.fromCategories} />
           </div>
           <Loading />
         </div>
@@ -51,7 +56,7 @@ export default class ProductList extends React.Component {
       <div>
         <div className="sidebar-categories">
           <SearchInput getInput={this.getInput} inputText={inputText} />
-          <SideBar />
+          <SideBar categorie={categorie} fromCategories={this.fromCategories} />
         </div>
         <div>Products</div>
         {product.map((e) => (

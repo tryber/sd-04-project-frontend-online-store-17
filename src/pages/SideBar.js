@@ -16,13 +16,16 @@ export default class SideBar extends React.Component {
   }
 
   render() {
+    const { fromCategories } = this.props;
     const { categories } = this.state;
-    if (this.state.loaded === false) return <div>Oi</div>;
+    if (this.state.loaded === false) return <div>L O A D I N G . . . </div>;
     return (
       <div data-testid="side-bar">
         <div data-testid="btn-categorie">
           {categories.map((e) => (
-            <button key={e.id}>{e.name}</button>
+            <button key={e.id} onSubmit={fromCategories} value={e.id}>
+              {e.name}
+            </button>
           ))}
         </div>
       </div>
