@@ -5,6 +5,7 @@ import ProductList from './components/ProductList';
 import SearchInput from './components/header';
 import ShoppingCartPage from './pages/ShoppingCartPage';
 import ShoppingCartButton from './components/shoppingCartButton';
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
           <SearchInput />
           <ShoppingCartButton />
           <Switch>
-            <Route path="/" component={ProductList} />
+            <Route exact path="/" component={ProductList} />
+            <Route path="/product/:id/detail" component={ProductDetails} />
             <Route exact path="/ShoppingCartPage" component={ShoppingCartPage} />
           </Switch>
         </BrowserRouter>
