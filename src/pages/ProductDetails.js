@@ -32,7 +32,6 @@ class ProductDetails extends React.Component {
   }
 }
 
-ProductDetails.propTypes = {
-  match: PropTypes.shape({ price: PropTypes.number }).isRequired };
+ProductDetails.propTypes = { location: PropTypes.shape({ price: PropTypes.number }).isRequired };
 
 export default ProductDetails;
