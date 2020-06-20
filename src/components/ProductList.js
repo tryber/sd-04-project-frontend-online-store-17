@@ -10,12 +10,13 @@ export default class ProductList extends React.Component {
     super(props);
 
     this.getInput = this.getInput.bind(this);
+    this.fromCategories = this.fromCategories.bind(this);
 
     this.state = {
-      categorie: '',
       product: [],
       loading: false,
       inputText: '',
+      productOfCategory: [],
     };
   }
 
@@ -33,19 +34,20 @@ export default class ProductList extends React.Component {
       .then((data) => this.setState({ product: data.results, loading: true }));
   }
 
-  fromCategories(event) {
-    console.log(event.target.value);
+  async fromCategories(event) {
+    const { value } = event.target;
+    const products = await api.getProductFromCategories(value);
+    this.setState({ productOfCategory: products.results, loading: true });
   }
 
   render() {
-    const { fromCategories } = this.props;
-    const { product, loading, inputText, categorie } = this.state;
+    const { product, loading, inputText } = this.state;
     if (loading === false || inputText.length < 4) {
       return (
         <div>
           <div className="sidebar-categories">
             <SearchInput getInput={this.getInput} inputText={inputText} />
-            <SideBar categorie={categorie} fromCategories={this.fromCategories} />
+            <SideBar fromCategories={this.fromCategories} />
           </div>
           <Loading />
         </div>
@@ -56,7 +58,7 @@ export default class ProductList extends React.Component {
       <div>
         <div className="sidebar-categories">
           <SearchInput getInput={this.getInput} inputText={inputText} />
-          <SideBar categorie={categorie} fromCategories={this.fromCategories} />
+          <SideBar fromCategories={this.fromCategories} />
         </div>
         <div>Products</div>
         {product.map((e) => (

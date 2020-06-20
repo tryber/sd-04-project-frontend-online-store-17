@@ -23,7 +23,7 @@ export default class SideBar extends React.Component {
       <div data-testid="side-bar">
         <div data-testid="btn-categorie">
           {categories.map((e) => (
-            <button key={e.id} onSubmit={fromCategories} value={e.id}>
+            <button key={e.id} onClick={fromCategories} value={e.id}>
               {e.name}
             </button>
           ))}
