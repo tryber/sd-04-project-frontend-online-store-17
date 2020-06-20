@@ -4,13 +4,10 @@ import { Link } from 'react-router-dom';
 // import ProductList from '../components/ProductList';
 
 class ProductDetails extends React.Component {
-  constructor(props) {
+  /*   constructor(props) {
     super(props);
-
-    this.state = {
-      quantity: 1,
-    };
-  }
+    this.state = { quantity: 1 };
+  } */
 
   render() {
     const { location } = this.props;
@@ -36,7 +33,6 @@ class ProductDetails extends React.Component {
 }
 
 ProductDetails.propTypes = {
-  location: PropTypes.any,
-};
+  match: PropTypes.shape({ price: PropTypes.number }).isRequired };
 
 export default ProductDetails;
