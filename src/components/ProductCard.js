@@ -10,7 +10,9 @@ export default class ProductCard extends React.Component {
         <img src={thumbnail} alt={id} />
         <p>{title}</p>
         <p>{`R$ ${price}`}</p>
-        <Link data-testid="product-detail-link" to={{ pathname: `/product/${id}/detail`, product }}>DETALHES</Link>
+        <Link data-testid="product-detail-link" to={{ pathname: `/${id}`, product }}>
+          )>DETALHES
+        </Link>
       </div>
     );
   }
