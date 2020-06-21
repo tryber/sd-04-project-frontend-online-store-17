@@ -17,13 +17,13 @@ export default class SideBar extends React.Component {
 
   render() {
     const { fromCategories } = this.props;
-    const { categories } = this.state;
-    if (this.state.loaded === false) return <div>L O A D I N G . . . </div>;
+    const { categories, loaded } = this.state;
+    if (loaded === false) return <div>L O A D I N G . . . </div>;
     return (
       <div data-testid="side-bar">
         <div data-testid="btn-categorie">
           {categories.map((e) => (
-            <button key={e.id} onClick={fromCategories} value={e.id}>
+            <button type="button" key={e.id} onClick={fromCategories} value={e.id}>
               {e.name}
             </button>
           ))}
