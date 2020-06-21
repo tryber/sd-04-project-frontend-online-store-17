@@ -29,7 +29,8 @@ export default class SideBar extends React.Component {
               type="button"
               key={e.id}
               onClick={fromCategories}
-              value={e.id}>
+              value={e.id}
+            >
               {e.name}
             </button>
           ))}
