@@ -1,5 +1,6 @@
 import React from 'react';
 import * as api from '../services/api';
+import './SideBar.css';
 
 export default class SideBar extends React.Component {
   constructor(props) {
@@ -21,7 +22,7 @@ export default class SideBar extends React.Component {
     if (loaded === false) return <div>L O A D I N G . . . </div>;
     return (
       <div data-testid="side-bar">
-        <div data-testid="btn-categorie">
+        <div data-testid="btn-categorie" className="sidebar">
           {categories.map((e) => (
             <button type="button" key={e.id} onClick={fromCategories} value={e.id}>
               {e.name}
