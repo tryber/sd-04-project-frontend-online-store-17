@@ -17,7 +17,7 @@ class SearchInput extends React.Component {
 
   render() {
     const { categories, loaded } = this.state;
-    const { getInput, inputText, chamaApi, selectedCategory } = this.props;
+    const { getInput, inputText, selectedCategory, getProductsFromApi } = this.props;
     if (loaded === false) return <div> </div>;
     return (
       <div>
@@ -32,7 +32,7 @@ class SearchInput extends React.Component {
               value={inputText}
             />
           </label>
-          <button type="submit" onClick={chamaApi}>
+          <button type="submit" onClick={getProductsFromApi}>
             Pesquisar
           </button>
           <select onChange={selectedCategory} name="cars" id="cars">

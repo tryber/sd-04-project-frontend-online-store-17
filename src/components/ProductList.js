@@ -2,7 +2,7 @@ import React from 'react';
 import SideBar from '../pages/SideBar';
 import * as api from '../services/api';
 import ProductCard from './ProductCard';
-import SearchInput from './header';
+import SearchInput from './SearchBar';
 
 export default class ProductList extends React.Component {
   constructor(props) {
@@ -10,8 +10,9 @@ export default class ProductList extends React.Component {
 
     this.getInput = this.getInput.bind(this);
     this.fromCategories = this.fromCategories.bind(this);
-    this.chamaApi = this.chamaApi.bind(this);
+    // this.onlySearch = this.onlySearch.bind(this);
     this.selectedCategory = this.selectedCategory.bind(this);
+    this.getProductsFromApi = this.getProductsFromApi.bind(this);
 
     this.state = {
       product: [],
@@ -25,23 +26,20 @@ export default class ProductList extends React.Component {
     this.setState({ inputText: event.target.value });
   }
 
-  selectedCategory(event) {
-    this.setState({ selectedCategory: event.target.value });
-  }
-
-  async searchAndCategory() {
+  async getProductsFromApi() {
     const { inputText, selectedCategory } = this.state;
+    if (selectedCategory === '') {
+      await api
+        .getProductFromQuery(inputText)
+        .then((data) => this.setState({ product: data.results, loading: true }));
+    }
     await api
       .getProductsFromCategoryAndQuery(selectedCategory, inputText)
       .then((data) => this.setState({ product: data.results, loading: true }));
   }
 
-  async chamaApi() {
-    console.log('foi chamada chamaapi');
-    const { inputText } = this.state;
-    await api
-      .getProductFromQuery(inputText)
-      .then((data) => this.setState({ product: data.results, loading: true }));
+  selectedCategory(event) {
+    this.setState({ selectedCategory: event.target.value });
   }
 
   async fromCategories(event) {
@@ -52,6 +50,7 @@ export default class ProductList extends React.Component {
 
   render() {
     const { product, loading, inputText } = this.state;
+    console.log(this.state);
     if (loading === false) {
       return (
         <div>
@@ -59,8 +58,8 @@ export default class ProductList extends React.Component {
             <SearchInput
               getInput={this.getInput}
               selectedCategory={this.selectedCategory}
-              chamaApi={this.chamaApi}
               inputText={inputText}
+              getProductsFromApi={this.getProductsFromApi}
             />
             <SideBar fromCategories={this.fromCategories} />
           </div>
@@ -77,8 +76,8 @@ export default class ProductList extends React.Component {
           <SearchInput
             getInput={this.getInput}
             selectedCategory={this.selectedCategory}
-            chamaApi={this.chamaApi}
             inputText={inputText}
+            getProductsFromApi={this.getProductsFromApi}
           />
           <SideBar fromCategories={this.fromCategories} />
         </div>
