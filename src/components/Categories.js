@@ -7,7 +7,7 @@ export default class Categories extends React.Component {
     return (
       <select onChange={selectedCategory} name="categories" id="category">
         {category.map((e) => (
-          <option value={e.id} key={e.id}>
+          <option data-testid="category" value={e.id} key={e.id}>
             {e.name}
           </option>
         ))}

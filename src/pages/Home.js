@@ -1,6 +1,7 @@
 import React from 'react';
 import * as api from '../services/api';
 import SearchInput from '../components/SearchInput';
+import ProductList from '../components/ProductList';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -8,15 +9,25 @@ export default class Home extends React.Component {
 
     this.getInput = this.getInput.bind(this);
     this.getProductsFromApi = this.getProductsFromApi.bind(this);
+    this.selectedCategory = this.selectedCategory.bind(this);
+
     this.state = {
       product: '',
       category: '',
       inputText: '',
+      selectedCategory: '',
     };
   }
 
   componentDidMount() {
     api.getCategories().then((data) => this.setState({ category: data }));
+  }
+
+  componentDidUpdate(prevState) {
+    if (prevState.category !== this.state.category) {
+      // this.getProductsFromApi();
+      console.log(this.state);
+    }
   }
 
   async getInput(event) {
@@ -25,11 +36,6 @@ export default class Home extends React.Component {
 
   async getProductsFromApi() {
     const { inputText, selectedCategory } = this.state;
-    if (selectedCategory === '') {
-      await api
-        .getProductFromQuery(inputText)
-        .then((data) => this.setState({ product: data.results }));
-    }
     await api
       .getProductsFromCategoryAndQuery(selectedCategory, inputText)
       .then((data) => this.setState({ product: data.results }));
@@ -40,16 +46,18 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { category, inputText } = this.state;
-    console.log(this.state);
+    const { category, inputText, product } = this.state;
     return (
-      <SearchInput
-        getInput={this.getInput}
-        inputText={inputText}
-        selectedCategory={this.selectedCategory}
-        getProductsFromApi={this.getProductsFromApi}
-        category={category}
-      />
+      <div>
+        <SearchInput
+          getInput={this.getInput}
+          inputText={inputText}
+          selectedCategory={this.selectedCategory}
+          getProductsFromApi={this.getProductsFromApi}
+          category={category}
+        />
+        <ProductList product={product} />
+      </div>
     );
   }
 }

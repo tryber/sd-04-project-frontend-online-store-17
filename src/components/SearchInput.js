@@ -1,5 +1,4 @@
 import React from 'react';
-import * as api from '../services/api';
 import Categories from './Categories';
 
 class SearchInput extends React.Component {
@@ -11,6 +10,7 @@ class SearchInput extends React.Component {
           <label htmlFor="labelInput">
             Pesquisa
             <input
+              data-testid="query-input"
               type="text"
               name="labelInput"
               id="labelInput"
@@ -19,7 +19,7 @@ class SearchInput extends React.Component {
             />
           </label>
           <Categories category={category} selectedCategory={selectedCategory} />
-          <button type="submit" onClick={getProductsFromApi}>
+          <button type="submit" data-testid="query-button" onClick={getProductsFromApi}>
             Pesquisar
           </button>
         </div>
