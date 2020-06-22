@@ -1,7 +1,7 @@
 import React from 'react';
 import SideBar from '../pages/SideBar';
 import * as api from '../services/api';
-import SearchInput from './SearchBar';
+import SearchInput from './SearchInput';
 import ProductCard from './ProductCard';
 
 export default class ProductList extends React.Component {
