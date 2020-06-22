@@ -19,13 +19,6 @@ class SearchInput extends React.Component {
             />
           </label>
           <Categories category={category} selectedCategory={selectedCategory} />
-          {/* <select onChange={selectedCategory} name="cars" id="cars">
-            {category.map((e) => (
-              <option value={e.id} key={e.id}>
-                {e.name}
-              </option>
-            ))}
-          </select> */}
           <button type="submit" onClick={getProductsFromApi}>
             Pesquisar
           </button>

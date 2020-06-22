@@ -15,20 +15,12 @@ export default class Home extends React.Component {
     };
   }
 
-  // componentDidUpdate(prevState) {
-  //   if (prevState.category !== this.state.category) return console.log('atualizou');
-  // }
-
   componentDidMount() {
     api.getCategories().then((data) => this.setState({ category: data }));
   }
 
   async getInput(event) {
     this.setState({ inputText: event.target.value });
-  }
-
-  selectedCategory(event) {
-    this.setState({ selectedCategory: event.target.value });
   }
 
   async getProductsFromApi() {
@@ -42,6 +34,11 @@ export default class Home extends React.Component {
       .getProductsFromCategoryAndQuery(selectedCategory, inputText)
       .then((data) => this.setState({ product: data.results }));
   }
+
+  selectedCategory(event) {
+    this.setState({ selectedCategory: event.target.value });
+  }
+
   render() {
     const { category, inputText } = this.state;
     console.log(this.state);
