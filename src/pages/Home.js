@@ -23,29 +23,25 @@ export default class Home extends React.Component {
     api.getCategories().then((data) => this.setState({ category: data }));
   }
 
-  componentDidUpdate(prevState) {
-    if (prevState.category !== this.state.category) {
-      // this.getProductsFromApi();
-      console.log(this.state);
-    }
-  }
-
   async getInput(event) {
     this.setState({ inputText: event.target.value });
   }
 
-  async getProductsFromApi() {
+  getProductsFromApi() {
     const { inputText, selectedCategory } = this.state;
-    await api
+    api
       .getProductsFromCategoryAndQuery(selectedCategory, inputText)
       .then((data) => this.setState({ product: data.results }));
   }
 
   selectedCategory(event) {
     this.setState({ selectedCategory: event.target.value });
+    this.getProductsFromApi();
   }
 
   render() {
+    console.log(this.state);
+
     const { category, inputText, product } = this.state;
     return (
       <div>
