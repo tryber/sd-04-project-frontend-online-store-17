@@ -18,8 +18,6 @@ class Rating extends React.Component {
 
   render() {
     const { comment, rate } = this.state;
-    console.log(this.state);
-
     return (
       <div>
         <form>
