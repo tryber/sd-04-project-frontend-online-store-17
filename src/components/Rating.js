@@ -26,7 +26,8 @@ class Rating extends React.Component {
             id="comentario"
             type="submit"
             onChange={(event) => this.handleComment('comment', event.target.value)}
-            value={comment}>
+            value={comment}
+          >
             {comment}
           </textarea>
           <label htmlFor="rating">Avaliação</label>

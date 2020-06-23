@@ -2,7 +2,7 @@ import React from 'react';
 
 export default class Categories extends React.Component {
   render() {
-    const { selectedCategory, category, getProductsFromApi } = this.props;
+    const { selectedCategory, category } = this.props;
     if (category === '') return '...';
     return (
       <div>
