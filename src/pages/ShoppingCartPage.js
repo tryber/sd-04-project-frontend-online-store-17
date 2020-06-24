@@ -6,14 +6,14 @@ class ShoppingCartPage extends React.Component {
     super(props);
 
     this.state = {
-      cart: '',
+      cart: 'Seu carrinho está vazio',
     };
   }
 
   render() {
     return (
       <div>
-        <span data-testid="shopping-cart-empty-message">"Seu carrinho está vazio"</span>
+        <span data-testid="shopping-cart-empty-message">{this.state.cart}</span>
         <Link to="/checkout" data-testid="checkout-products">
           Finalizar a Compra
         </Link>
