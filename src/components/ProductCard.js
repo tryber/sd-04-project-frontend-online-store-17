@@ -3,12 +3,6 @@ import { Link } from 'react-router-dom';
 import Frete from './Frete';
 
 export default class ProductCard extends React.Component {
-  // freeShipping() {
-  //   const { free_shipping } = product.shipping;
-  //   if (free_shipping === true) {
-  //     return <Frete />;
-  //   }
-  // }
   render() {
     const { product } = this.props;
     const { free_shipping } = product.shipping;
