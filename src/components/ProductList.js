@@ -7,21 +7,19 @@ export default class ProductList extends React.Component {
 
     this.addToCart = this.addToCart.bind(this);
 
-    this.state = {
-      lista: [],
-    };
+    this.state = { lista: [] };
   }
 
   async addToCart(product) {
     await this.setState({ lista: [...this.state.lista, product] });
-    localStorage.setItem('lista', JSON.stringify(this.state.lista));
+    localStorage.setItem("lista", JSON.stringify(this.state.lista));
   }
 
   render() {
     const { product } = this.props;
-    if (product === '') {
+    if (product === "") {
       return (
-        <span data-testid='home-initial-message'>
+        <span data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </span>
       );

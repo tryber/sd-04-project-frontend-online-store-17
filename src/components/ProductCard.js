@@ -8,17 +8,17 @@ export default class ProductCard extends React.Component {
     const { free_shipping } = product.shipping;
     const { id, title, price, thumbnail } = product;
     return (
-      <div data-testid='product'>
+      <div data-testid="product">
         <img src={thumbnail} alt={id} />
         <p>{title}</p>
         <p>{`R$ ${price}`}</p>
         <Link
-          data-testid='product-detail-link'
+          data-testid="product-detail-link"
           to={{ pathname: `/product/${id}/detail`, product }}
         >
           DETALHES
         </Link>
-        <button data-testid="product-add-to-cart" type='button' onClick={() => addToCart(product)}>
+        <button data-testid="product-add-to-cart" type="button" onClick={() => addToCart(product)}>
           Comprar
         </button>
         <Frete shipping={free_shipping} />
