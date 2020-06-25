@@ -54,6 +54,10 @@ class ShoppingCartPage extends React.Component {
             </Link>
           </div>
         ))}
+        <span data-testid="shopping-cart-empty-message">{this.state.cart}</span>
+        <Link to="/checkout" data-testid="checkout-products">
+          Finalizar a Compra
+        </Link>
       </div>
     );
   };

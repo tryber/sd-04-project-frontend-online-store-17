@@ -18,13 +18,12 @@ class Rating extends React.Component {
 
   render() {
     const { comment, rate } = this.state;
-    console.log(this.state);
-
     return (
       <div>
         <form>
           <label htmlFor="comentario">Comente:</label>
           <textarea
+            data-testid="product-detail-evaluation"
             id="comentario"
             type="submit"
             onChange={(event) => this.handleComment('comment', event.target.value)}
