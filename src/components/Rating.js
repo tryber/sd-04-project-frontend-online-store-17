@@ -23,6 +23,7 @@ class Rating extends React.Component {
         <form>
           <label htmlFor="comentario">Comente:</label>
           <textarea
+            data-testid="product-detail-evaluation"
             id="comentario"
             type="submit"
             onChange={(event) => this.handleComment('comment', event.target.value)}
