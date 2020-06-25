@@ -2,6 +2,7 @@ import React from 'react';
 import * as api from '../services/api';
 import SearchInput from '../components/SearchInput';
 import ProductList from '../components/ProductList';
+import ShoppingCartButton from '../components/shoppingCartButton';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ export default class Home extends React.Component {
     const { category, inputText, product } = this.state;
     return (
       <div>
+        <ShoppingCartButton />
         <SearchInput
           getInput={this.getInput}
           inputText={inputText}
