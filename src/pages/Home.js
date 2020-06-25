@@ -34,9 +34,9 @@ export default class Home extends React.Component {
       .then((data) => this.setState({ product: data.results }));
   }
 
-  selectedCategory(event) {
-    this.setState({ selectedCategory: event.target.value });
-    this.getProductsFromApi();
+  async selectedCategory(event) {
+    await this.setState({ selectedCategory: event.target.value });
+    await this.getProductsFromApi();
   }
 
   render() {
