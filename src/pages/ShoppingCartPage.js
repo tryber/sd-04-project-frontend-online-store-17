@@ -22,12 +22,12 @@ class ShoppingCartPage extends React.Component {
     this.setState({ cartItens: lista });
   };
 
-  filtrar = (elemento) => {
+  filtrar(elemento) {
     const carrinho = this.state.cartItens;
     return carrinho.filter((ele) => ele.title == elemento.title).length;
   };
 
-  renderizar = () => {
+  renderizar() {
     const product = this.state.cartItens;
     if (this.state.cartItens.length === 0)
       return (
