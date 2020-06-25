@@ -16,7 +16,7 @@ class ShoppingCartPage extends React.Component {
     this.getStorage();
   }
 
-  getStorage = () => {
+  getStorage() {
     if(!localStorage.lista) localStorage.lista = JSON.stringify([])
     const lista = JSON.parse(localStorage.getItem('lista'));
     this.setState({ cartItens: lista });
