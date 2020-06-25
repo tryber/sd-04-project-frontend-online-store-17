@@ -34,7 +34,8 @@ class ShoppingCartPage extends React.Component {
         <span data-testid="shopping-cart-empty-message">
           Seu carrinho está vazio
         </span>
-      );}
+      );
+    }
     return (
       <div>
         <h2>Carrinho de compras</h2>
@@ -46,20 +47,19 @@ class ShoppingCartPage extends React.Component {
             <p>{`R$ ${e.price}`}</p>
             <Link
               data-testid="product-detail-link"
-              to={{ pathname: `/product/${e.id}/detail`, e }}>DETALHES
+              to={{ pathname: `/product/${e.id}/detail`, e }}
+            >DETALHES
             </Link>
           </div>
         ))}
         <span data-testid="shopping-cart-empty-message">{this.state.cart}</span>
-        <Link to="/checkout" data-testid="checkout-products">
-          Finalizar a Compra
-        </Link>
+        <Link to="/checkout" data-testid="checkout-products">Finalizar a Compra</Link>
       </div>
     );
-  };
+  }
 
   render() {
-    return <div>{this.renderizar()}</div>
+    return <div>{this.renderizar()}</div>;
   }
 }
 
