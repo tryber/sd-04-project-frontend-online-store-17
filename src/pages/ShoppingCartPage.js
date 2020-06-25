@@ -40,7 +40,7 @@ class ShoppingCartPage extends React.Component {
       <div>
         <h2>Carrinho de compras</h2>
         {product.map((e) => (
-          <div key={e.id}>
+          <div data-testid="shopping-cart-product-name" key={e.id}>
             <img src={e.thumbnail} alt={e.id} />
             <p data-testid="shopping-cart-product-name">{e.title}</p>
             <p data-testid="shopping-cart-product-quantity">{this.filtrar(e)}</p>
