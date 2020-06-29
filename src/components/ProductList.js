@@ -2,6 +2,11 @@ import React from 'react';
 import ProductCard from './ProductCard';
 
 export default class ProductList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addToCart = this.addToCart.bind(this);
+  }
+
   addToCart(product) {
     if (!localStorage.lista) localStorage.lista = JSON.stringify([]);
     const lista = JSON.parse(localStorage.getItem('lista'));
