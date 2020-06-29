@@ -6,9 +6,13 @@ export default class ProductCard extends React.Component {
   constructor(props) {
     super(props);
     this.addToCart = this.addToCart.bind(this);
+    this.state = { random: '' };
   }
 
   addToCart(product) {
+    const { random } = this.state;
+    this.setState({ random: Math.random() * 5 });
+    console.log(random);
     if (!localStorage.lista) localStorage.lista = JSON.stringify([]);
     const lista = JSON.parse(localStorage.getItem('lista'));
     const cart = [...lista, product];
