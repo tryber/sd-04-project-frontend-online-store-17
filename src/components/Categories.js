@@ -7,7 +7,13 @@ export default class Categories extends React.Component {
     return (
       <div>
         {category.map((e) => (
-          <button onClick={selectedCategory} data-testid="category" value={e.id} key={e.id}>
+          <button
+            type="button"
+            onClick={selectedCategory}
+            data-testid="category"
+            value={e.id}
+            key={e.id}
+          >
             {e.name}
           </button>
         ))}

@@ -2,21 +2,16 @@ import React from 'react';
 import ProductCard from './ProductCard';
 
 export default class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.addToCart = this.addToCart.bind(this);
-
-    this.state = { lista: [] };
-  }
-
-  async addToCart(product) {
-    await this.setState({ lista: [...this.state.lista, product] });
-    localStorage.setItem('lista', JSON.stringify(this.state.lista));
+  addToCart(product) {
+    if (!localStorage.lista) localStorage.lista = JSON.stringify([]);
+    const lista = JSON.parse(localStorage.getItem('lista'));
+    const cart = [...lista, product];
+    localStorage.setItem('lista', JSON.stringify(cart));
   }
 
   render() {
     const { product } = this.props;
+    // console.log(product);
     if (product === '') {
       return (
         <span data-testid="home-initial-message">
