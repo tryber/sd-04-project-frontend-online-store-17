@@ -5,9 +5,7 @@ class ShoppingCartPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      cartItens: [],
-    };
+    this.state = { cartItens: [] };
     this.filtrar = this.filtrar.bind(this);
   }
 
@@ -22,8 +20,8 @@ class ShoppingCartPage extends React.Component {
   }
 
   filtrar(elemento) {
-    const carrinho = this.state.cartItens;
-    return carrinho.filter((ele) => ele.title === elemento.title).length;
+    const { cartItens } = this.state;
+    return cartItens.filter((ele) => ele.title === elemento.title).length;
   }
 
   render() {
