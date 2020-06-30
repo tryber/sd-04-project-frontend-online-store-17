@@ -6,7 +6,7 @@ class ShoppingCartPage extends React.Component {
     super(props);
 
     this.state = { cartItens: [] };
-    this.filtrar = this.filtrar.bind(this);
+    this.filtrar = this.quantity.bind(this);
   }
 
   componentDidMount() {
@@ -19,9 +19,20 @@ class ShoppingCartPage extends React.Component {
     this.setState({ cartItens: lista });
   }
 
-  filtrar(elemento) {
+  quantity(elemento) {
     const { cartItens } = this.state;
     return cartItens.filter((ele) => ele.title === elemento.title).length;
+  }
+
+  valor(elemento) {
+    const { cartItens } = this.state;
+    const quantity = cartItens.filter((ele) => ele.title === elemento.title).length;
+    const valor = elemento.price * quantity;
+    return valor;
+  }
+  increase(element) {
+    const { cartItens } = this.state;
+    const quantity = cartItens.filter((ele) => ele.title === elemento.title).length;
   }
 
   render() {
@@ -36,8 +47,9 @@ class ShoppingCartPage extends React.Component {
           <div key={e.id}>
             <img src={e.thumbnail} alt={e.id} />
             <p data-testid="shopping-cart-product-name">{e.title}</p>
-            <p data-testid="shopping-cart-product-quantity">{this.filtrar(e)}</p>
-            <p>{`R$ ${e.price}`}</p>
+            <p data-testid="shopping-cart-product-quantity">{this.quantity(e)}</p>
+            <p>{`R$ ${e.price} unidade`}</p>
+            <p>{`Valor Total: ${this.valor(e)}`}</p>
             <Link data-testid="product-detail-link" to={{ pathname: `/product/${e.id}/detail`, e }}>
               DETALHES
             </Link>
