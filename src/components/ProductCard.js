@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import Frete from './Frete';
+import Frete from './Frete';
 import ButtonBuy from './ButtonBuy';
 
 export default class ProductCard extends React.Component {
   render() {
     const { product } = this.props;
-    // const { free_shipping } = product.shipping;
+    const shipping = Object.values(Object.entries(product.shipping)[0])[1];
     const { id, title, price, thumbnail } = product;
     return (
       <div data-testid="product">
@@ -17,7 +17,7 @@ export default class ProductCard extends React.Component {
           DETALHES
         </Link>
         <ButtonBuy product={product} />
-        {/* <Frete shipping={free_shipping} /> */}
+        <Frete shipping={shipping} />
       </div>
     );
   }
