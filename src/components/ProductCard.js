@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import Frete from './Frete';
-import BotãoDeCompra from './BotãoDeCompra';
+import ButtonBuy from './BotãoDeCompra';
 
 export default class ProductCard extends React.Component {
   render() {
@@ -16,7 +16,7 @@ export default class ProductCard extends React.Component {
         <Link data-testid="product-detail-link" to={{ pathname: `/product/${id}/detail`, product }}>
           DETALHES
         </Link>
-        <BotãoDeCompra product={product} />
+        <ButtonBuy product={product} />
         {/* <Frete shipping={free_shipping} /> */}
       </div>
     );

@@ -7,7 +7,7 @@ const addToCart = (product) => {
   localStorage.setItem('lista', JSON.stringify(cart));
 };
 
-class BotãoDeCompra extends Component {
+class ButtonBuy extends Component {
   render() {
     const { product } = this.props;
     return (
@@ -17,4 +17,4 @@ class BotãoDeCompra extends Component {
     );
   }
 }
-export default BotãoDeCompra;
+export default ButtonBuy;
