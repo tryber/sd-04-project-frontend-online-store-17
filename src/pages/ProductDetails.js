@@ -2,14 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
-// import ProductList from '../components/ProductList';
+import BotãoDeCompra from '../components/BotãoDeCompra';
 
 class ProductDetails extends React.Component {
-  /*   constructor(props) {
-    super(props);
-    this.state = { quantity: 1 };
-  } */
-
   render() {
     const { location } = this.props;
     const { product } = location;
@@ -29,6 +24,7 @@ class ProductDetails extends React.Component {
           ))}
         </ul>
         <Rating product={product} />
+        <BotãoDeCompra product={product} />
       </div>
     );
   }

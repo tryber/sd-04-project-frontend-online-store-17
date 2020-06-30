@@ -1,24 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import Frete from './Frete';
+import BotãoDeCompra from './BotãoDeCompra';
 
 export default class ProductCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.addToCart = this.addToCart.bind(this);
-    this.state = { random: '' };
-  }
-
-  addToCart(product) {
-    const { random } = this.state;
-    this.setState({ random: Math.random() * 5 });
-    console.log(random);
-    if (!localStorage.lista) localStorage.lista = JSON.stringify([]);
-    const lista = JSON.parse(localStorage.getItem('lista'));
-    const cart = [...lista, product];
-    localStorage.setItem('lista', JSON.stringify(cart));
-  }
-
   render() {
     const { product } = this.props;
     // const { free_shipping } = product.shipping;
@@ -31,13 +16,7 @@ export default class ProductCard extends React.Component {
         <Link data-testid="product-detail-link" to={{ pathname: `/product/${id}/detail`, product }}>
           DETALHES
         </Link>
-        <button
-          data-testid="product-add-to-cart"
-          type="button"
-          onClick={() => this.addToCart(product)}
-        >
-          Comprar
-        </button>
+        <BotãoDeCompra product={product} />
         {/* <Frete shipping={free_shipping} /> */}
       </div>
     );
