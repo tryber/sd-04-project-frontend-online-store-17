@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // import Frete from './Frete';
-import ButtonBuy from './BotãoDeCompra';
+import ButtonBuy from './ButtonBuy';
 
 export default class ProductCard extends React.Component {
   render() {
