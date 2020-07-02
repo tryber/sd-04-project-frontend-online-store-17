@@ -2,7 +2,14 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
-import ButtonBuy from '../components/ButtonBuy';
+import ShoppingCartButton from '../components/shoppingCartButton';
+
+const addToCart = (product) => {
+  if (!localStorage.lista) localStorage.lista = JSON.stringify([]);
+  const lista = JSON.parse(localStorage.getItem('lista'));
+  const cart = [...lista, product];
+  localStorage.setItem('lista', JSON.stringify(cart));
+};
 
 class ProductDetails extends React.Component {
   render() {
@@ -24,7 +31,14 @@ class ProductDetails extends React.Component {
           ))}
         </ul>
         <Rating product={product} />
-        <ButtonBuy product={product} />
+        <button
+          type="submit"
+          data-testid="product-detail-add-to-cart"
+          onClick={() => addToCart(product)}
+        >
+          Add to Cart
+        </button>
+        <ShoppingCartButton />
       </div>
     );
   }
