@@ -5,51 +5,69 @@ class ShoppingCartPage extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { cartItens: [] };
-    this.filtrar = this.quantity.bind(this);
+    this.state = { cartItens: [], total: 0 };
   }
 
   componentDidMount() {
     this.getStorage();
+    this.valorTotalDaCompra();
   }
 
   getStorage() {
     if (!localStorage.lista) localStorage.lista = JSON.stringify([]);
     const lista = JSON.parse(localStorage.getItem('lista'));
-    this.setState({ cartItens: lista });
+    let newList = [];
+    lista.forEach((e) => {
+      const quantidade = lista.filter((ele) => ele.title === e.title).length;
+      const newProduct = { ...e, quantidade };
+      newList = [...newList, newProduct];
+    });
+    this.setState({ cartItens: newList });
+    // this.valorTotalDaCompra();
   }
 
-  quantity(elemento) {
+  addQuantity(elemento) {
     const { cartItens } = this.state;
-    return cartItens.filter((ele) => ele.title === elemento.title).length;
+    // const find = cartItens.findIndex((product) => product.id === elemento.id);
+    cartItens.forEach((product, aux) => {
+      if (elemento.id === product.id) cartItens[aux].quantidade += 1;
+    });
+    this.valorTotalDaCompra();
   }
 
-  valor(elemento) {
+  valorTotalDaCompra() {
     const { cartItens } = this.state;
-    const quantity = cartItens.filter((ele) => ele.title === elemento.title).length;
-    const valor = elemento.price * quantity;
-    return valor;
-  }
-  increase(element) {
-    const { cartItens } = this.state;
-    const quantity = cartItens.filter((ele) => ele.title === elemento.title).length;
+    let totalItem = 0;
+    cartItens.forEach((e) => {
+      totalItem += e.quantidade * e.price;
+      console.log(totalItem);
+    });
+    this.setState({ total: totalItem });
+    return totalItem;
   }
 
   render() {
-    const { cartItens } = this.state;
+    const { cartItens, total } = this.state;
+    console.log(cartItens);
+
     if (cartItens.length === 0) {
       return <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>;
     }
     return (
       <div>
         <h2>Carrinho de compras</h2>
+        <h3>{`Total da Compra: ${total}`}</h3>
         {cartItens.map((e) => (
           <div key={e.id}>
             <img src={e.thumbnail} alt={e.id} />
             <p data-testid="shopping-cart-product-name">{e.title}</p>
-            <p data-testid="shopping-cart-product-quantity">{this.quantity(e)}</p>
+            <span>
+              <button type="button" onClick={() => this.addQuantity(e)}>
+                +
+              </button>
+              <p data-testid="shopping-cart-product-quantity">{e.quantidade}</p>
+            </span>
             <p>{`R$ ${e.price} unidade`}</p>
-            <p>{`Valor Total: ${this.valor(e)}`}</p>
             <Link data-testid="product-detail-link" to={{ pathname: `/product/${e.id}/detail`, e }}>
               DETALHES
             </Link>
