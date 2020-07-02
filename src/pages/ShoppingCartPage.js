@@ -26,11 +26,12 @@ class ShoppingCartPage extends React.Component {
     // this.valorTotalDaCompra();
   }
 
-  addQuantity(elemento) {
+  addQuantity(elemento, maisoumenos) {
     const { cartItens } = this.state;
     // const find = cartItens.findIndex((product) => product.id === elemento.id);
     cartItens.forEach((product, aux) => {
-      if (elemento.id === product.id) cartItens[aux].quantidade += 1;
+      if (maisoumenos === 'more') if (elemento.id === product.id) cartItens[aux].quantidade += 1;
+      if (maisoumenos === 'less') if (elemento.id === product.id) cartItens[aux].quantidade -= 1;
     });
     this.valorTotalDaCompra();
   }
@@ -62,10 +63,21 @@ class ShoppingCartPage extends React.Component {
             <img src={e.thumbnail} alt={e.id} />
             <p data-testid="shopping-cart-product-name">{e.title}</p>
             <span>
-              <button type="button" onClick={() => this.addQuantity(e)}>
+              <button
+                data-testid="product-increase-quantity"
+                type="button"
+                onClick={() => this.addQuantity(e, 'more')}
+              >
                 +
               </button>
               <p data-testid="shopping-cart-product-quantity">{e.quantidade}</p>
+              <button
+                data-testid="product-decrease-quantity"
+                type="button"
+                onClick={() => this.addQuantity(e, 'less')}
+              >
+                +
+              </button>
             </span>
             <p>{`R$ ${e.price} unidade`}</p>
             <Link data-testid="product-detail-link" to={{ pathname: `/product/${e.id}/detail`, e }}>
