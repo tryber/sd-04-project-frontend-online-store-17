@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BtnMoreorLess from '../components/BtnMoreorLess';
 
 class ShoppingCartPage extends React.Component {
   constructor(props) {
     super(props);
-
+    this.addQuantity = this.addQuantity.bind(this);
     this.state = { cartItens: [], total: 0 };
   }
 
@@ -23,12 +24,10 @@ class ShoppingCartPage extends React.Component {
       newList = [...newList, newProduct];
     });
     this.setState({ cartItens: newList });
-    // this.valorTotalDaCompra();
   }
 
   addQuantity(elemento, maisoumenos) {
     const { cartItens } = this.state;
-    // const find = cartItens.findIndex((product) => product.id === elemento.id);
     cartItens.forEach((product, aux) => {
       if (maisoumenos === 'more') if (elemento.id === product.id) cartItens[aux].quantidade += 1;
       if (maisoumenos === 'less') if (elemento.id === product.id) cartItens[aux].quantidade -= 1;
@@ -41,7 +40,6 @@ class ShoppingCartPage extends React.Component {
     let totalItem = 0;
     cartItens.forEach((e) => {
       totalItem += e.quantidade * e.price;
-      console.log(totalItem);
     });
     this.setState({ total: totalItem });
     return totalItem;
@@ -49,8 +47,6 @@ class ShoppingCartPage extends React.Component {
 
   render() {
     const { cartItens, total } = this.state;
-    console.log(cartItens);
-
     if (cartItens.length === 0) {
       return <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>;
     }
@@ -62,23 +58,7 @@ class ShoppingCartPage extends React.Component {
           <div key={e.id}>
             <img src={e.thumbnail} alt={e.id} />
             <p data-testid="shopping-cart-product-name">{e.title}</p>
-            <span>
-              <button
-                data-testid="product-increase-quantity"
-                type="button"
-                onClick={() => this.addQuantity(e, 'more')}
-              >
-                +
-              </button>
-              <p data-testid="shopping-cart-product-quantity">{e.quantidade}</p>
-              <button
-                data-testid="product-decrease-quantity"
-                type="button"
-                onClick={() => this.addQuantity(e, 'less')}
-              >
-                +
-              </button>
-            </span>
+            <BtnMoreorLess e={e} addQuantity={this.addQuantity} />
             <p>{`R$ ${e.price} unidade`}</p>
             <Link data-testid="product-detail-link" to={{ pathname: `/product/${e.id}/detail`, e }}>
               DETALHES
