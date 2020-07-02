@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
 import ShoppingCartButton from '../components/shoppingCartButton';
 
-const addToCart = (product) => {
+const addToCartFromDetail = (product) => {
   if (!localStorage.lista) localStorage.lista = JSON.stringify([]);
   const lista = JSON.parse(localStorage.getItem('lista'));
   const cart = [...lista, product];
@@ -34,7 +34,7 @@ class ProductDetails extends React.Component {
         <button
           type="submit"
           data-testid="product-detail-add-to-cart"
-          onClick={() => addToCart(product)}
+          onClick={() => addToCartFromDetail(product)}
         >
           Add to Cart
         </button>
