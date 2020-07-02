@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import BtnMoreorLess from '../components/BtnMoreorLess';
+import ButtonBuy from '../components/ButtonBuy';
 
 class ShoppingCartPage extends React.Component {
   constructor(props) {
@@ -68,6 +69,8 @@ class ShoppingCartPage extends React.Component {
         <Link to="/checkout" data-testid="checkout-products">
           Finalizar a Compra
         </Link>
+        <ButtonBuy product={product} />
+
       </div>
     );
   }
