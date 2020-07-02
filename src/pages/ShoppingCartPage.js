@@ -29,8 +29,16 @@ class ShoppingCartPage extends React.Component {
   addQuantity(elemento, maisoumenos) {
     const { cartItens } = this.state;
     cartItens.forEach((product, aux) => {
-      if (maisoumenos === 'more') if (elemento.id === product.id) cartItens[aux].quantidade += 1;
-      if (maisoumenos === 'less') if (elemento.id === product.id) cartItens[aux].quantidade -= 1;
+      if (maisoumenos === 'more') {
+        if (elemento.id === product.id && product.available_quantity > product.quantidade) {
+          cartItens[aux].quantidade += 1;
+        }
+      }
+      if (maisoumenos === 'less') {
+        if (elemento.id === product.id && product.quantidade > 1) {
+          cartItens[aux].quantidade -= 1;
+        }
+      }
     });
     this.valorTotalDaCompra();
   }
@@ -47,6 +55,7 @@ class ShoppingCartPage extends React.Component {
 
   render() {
     const { cartItens, total } = this.state;
+    console.log(cartItens);
     if (cartItens.length === 0) {
       return <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>;
     }
